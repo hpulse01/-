@@ -1,0 +1,870 @@
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 2px solid #444;">
+                        <strong>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px; opacity: 0.6;">
+                                <polygon points="12 2 15.09 8.26 <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>H-Pulse 量子命运预测系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* 背景效果 */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0a0a0a 100%);
+            z-index: -2;
+        }
+        
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 30s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+        
+        /* 容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 标题 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffffff, #999999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666666;
+            font-size: 18px;
+        }
+        
+        /* 表单卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 表单元素 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #888888;
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* 性别选择 */
+        .gender-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .gender-btn {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .gender-btn.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 提交按钮 */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* 处理状态 */
+        .processing {
+            display: none;
+        }
+        
+        .processing.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 模块状态 */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .module-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .module-card.active {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .module-card.completed {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            opacity: 0.6;
+        }
+        
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .module-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #888;
+        }
+        
+        .module-card.active .module-icon svg {
+            color: #fff;
+        }
+        
+        .module-name {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .module-card.active .module-name {
+            color: #ccc;
+        }
+        
+        /* 结果展示 */
+        .results {
+            display: none;
+        }
+        
+        .results.active {
+            display: block;
+        }
+        
+        .result-header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(34, 197, 94, 0.2));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .quantum-signature {
+            font-family: monospace;
+            color: #10b981;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        /* 指标卡片 */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #9333ea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #9333ea, #ec4899, #3b82f6);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 4px solid #9333ea;
+            border-radius: 50%;
+        }
+        
+        .timeline-period {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-details {
+            margin-top: 10px;
+        }
+        
+        .timeline-events {
+            color: #e5e7eb;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* 动画效果 */
+        .timeline-item {
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .title {
+                font-size: 36px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">H-Pulse</h1>
+            <p class="subtitle">量子命运预测系统</p>
+        </header>
+        
+        <!-- 输入表单 -->
+        <div id="inputForm" class="card">
+            <h2 class="card-title">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </span>
+                输入基础信息
+            </h2>
+            
+            <form id="userForm">
+                <div class="form-group">
+                    <label class="form-label">姓名</label>
+                    <input type="text" class="form-input" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">性别</label>
+                    <div class="gender-buttons">
+                        <div class="gender-btn" data-gender="male">男性</div>
+                        <div class="gender-btn" data-gender="female">女性</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">出生日期</label>
+                    <input type="date" class="form-input" id="birthDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">出生时间</label>
+                    <input type="time" class="form-input" id="birthTime" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">出生地点</label>
+                    <input type="text" class="form-input" id="birthPlace" placeholder="例如：北京市" required>
+                </div>
+                
+                <button type="button" class="submit-btn" onclick="startPrediction()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m11-11h-6m-6 0H1"/>
+                        <path d="M20.5 7.5L16 12l4.5 4.5M3.5 7.5L8 12l-4.5 4.5"/>
+                    </svg>
+                    启动量子预测
+                </button>
+            </form>
+        </div>
+        
+        <!-- 处理状态 -->
+        <div id="processing" class="processing">
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </span>
+                    正在进行量子计算
+                </h2>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                
+                <div class="modules-grid" id="modulesGrid"></div>
+                
+                <p style="text-align: center; color: #9ca3af; margin-top: 20px;">
+                    <span id="currentModule">初始化系统...</span>
+                </p>
+            </div>
+        </div>
+        
+        <!-- 结果展示 -->
+        <div id="results" class="results">
+            <div class="result-header">
+                <h2 style="font-size: 24px; margin-bottom: 10px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    预测完成
+                </h2>
+                <p class="quantum-signature" id="quantumSig">QS-XXXX-XXXX</p>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="scoreValue">88</div>
+                    <div class="metric-label">综合评分</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="accuracyValue">89%</div>
+                    <div class="metric-label">预测准确度</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="coherenceValue">95%</div>
+                    <div class="metric-label">量子相干性</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="confidenceValue">87%</div>
+                    <div class="metric-label">置信度</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                    </span>
+                    未来时间线
+                </h3>
+                <div class="timeline" id="timeline"></div>
+            </div>
+            
+            <button class="submit-btn" onclick="resetForm()" style="margin-top: 20px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                </svg>
+                重新预测
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // 粒子效果
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+        
+        // 性别选择
+        let selectedGender = '';
+        document.querySelectorAll('.gender-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedGender = this.dataset.gender;
+            });
+        });
+        
+        // 处理模块
+        const modules = [
+            { id: 'fate_core', name: '命理源数据', icon: createSvgIcon('database') },
+            { id: 'reality', name: '现实因子', icon: createSvgIcon('globe') },
+            { id: 'watcher', name: '轨迹监测', icon: createSvgIcon('eye') },
+            { id: 'convergence', name: '路径计算', icon: createSvgIcon('network') },
+            { id: 'events', name: '事件分析', icon: createSvgIcon('layers') },
+            { id: 'modulation', name: '决策优化', icon: createSvgIcon('cpu') },
+            { id: 'quantum', name: '量子调节', icon: createSvgIcon('atom') },
+            { id: 'causality', name: '因果验证', icon: createSvgIcon('branch') },
+            { id: 'feedback', name: '量子反馈', icon: createSvgIcon('wave') },
+            { id: 'visualize', name: '报告生成', icon: createSvgIcon('chart') }
+        ];
+        
+        // 创建SVG图标
+        function createSvgIcon(type) {
+            const icons = {
+                database: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>',
+                globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+                eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+                network: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+                layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+                cpu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+                atom: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>',
+                branch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>',
+                wave: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c.556-1.556 1.889-3 4-3 3.111 0 3.111 3 6.222 3 2.111 0 3.444-1.444 4-3"/><path d="M10 12c.556-1.556 1.889-3 4-3 3.111 0 3.111 3 6.222 3 .674 0 1.258-.107 1.778-.291"/></svg>',
+                chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>'
+            };
+            return icons[type] || icons.database;
+        }
+        
+        // 更新图标样式
+        const iconStyle = document.createElement('style');
+        iconStyle.textContent = `
+            .module-icon svg {
+                width: 24px;
+                height: 24px;
+                color: #fff;
+            }
+            .module-card.active .module-icon {
+                animation: pulse 1.5s ease-in-out infinite;
+            }
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.1); opacity: 0.8; }
+            }
+        `;
+        document.head.appendChild(iconStyle);
+        
+        // 表单提交
+        function startPrediction() {
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const birthDate = document.getElementById('birthDate').value;
+            const birthTime = document.getElementById('birthTime').value;
+            const birthPlace = document.getElementById('birthPlace').value;
+            
+            // 验证必填项
+            if (!name || !birthDate || !birthTime || !birthPlace) {
+                alert('请填写完整信息');
+                return;
+            }
+            
+            if (!selectedGender) {
+                alert('请选择性别');
+                return;
+            }
+            
+            // 隐藏表单，显示处理状态
+            document.getElementById('inputForm').style.display = 'none';
+            document.getElementById('processing').classList.add('active');
+            
+            // 创建模块网格
+            const grid = document.getElementById('modulesGrid');
+            grid.innerHTML = '';
+            modules.forEach(module => {
+                const card = document.createElement('div');
+                card.className = 'module-card';
+                card.id = 'module-' + module.id;
+                card.innerHTML = `
+                    <div class="module-icon">${module.icon}</div>
+                    <div class="module-name">${module.name}</div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // 处理每个模块
+            processModules();
+        }
+        
+        // 处理模块的异步函数
+        async function processModules() {
+            for (let i = 0; i < modules.length; i++) {
+                const module = modules[i];
+                const moduleCard = document.getElementById('module-' + module.id);
+                
+                // 激活当前模块
+                moduleCard.classList.add('active');
+                document.getElementById('currentModule').textContent = '正在处理：' + module.name;
+                
+                // 更新进度条
+                const progress = ((i + 1) / modules.length) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+                
+                // 模拟处理时间
+                await new Promise(resolve => setTimeout(resolve, 1500 + Math.random() * 1000));
+                
+                // 完成当前模块
+                moduleCard.classList.remove('active');
+                moduleCard.classList.add('completed');
+            }
+            
+            // 显示结果
+            showResults();
+        }
+        
+        // 显示结果
+        function showResults() {
+            document.getElementById('processing').classList.remove('active');
+            document.getElementById('results').classList.add('active');
+            
+            // 生成量子签名
+            const sig = 'QS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+            document.getElementById('quantumSig').textContent = sig;
+            
+            // 生成随机但合理的数值
+            const score = 82 + Math.floor(Math.random() * 15);
+            const accuracy = 85 + Math.floor(Math.random() * 10);
+            const coherence = 90 + Math.floor(Math.random() * 8);
+            const confidence = 83 + Math.floor(Math.random() * 12);
+            
+            document.getElementById('scoreValue').textContent = score;
+            document.getElementById('accuracyValue').textContent = accuracy + '%';
+            document.getElementById('coherenceValue').textContent = coherence + '%';
+            document.getElementById('confidenceValue').textContent = confidence + '%';
+            
+            // 生成详细的时间线预测
+            const timeline = document.getElementById('timeline');
+            const periods = [
+                { 
+                    period: '2025年1-3月', 
+                    type: '蓄势待发期', 
+                    events: [
+                        '工作上有新项目机会，建议主动争取',
+                        '2月中旬有贵人相助，注意维护人脉',
+                        '健康方面需注意呼吸系统，避免熬夜'
+                    ],
+                    lucky: '幸运数字：3、8 | 幸运色：绿色',
+                    warning: '避免大额投资'
+                },
+                { 
+                    period: '2025年4-6月', 
+                    type: '事业突破期', 
+                    events: [
+                        '5月有晋升或跳槽良机，成功率87%',
+                        '收入将提升20-35%',
+                        '适合学习新技能，考证通过率高'
+                    ],
+                    lucky: '幸运数字：6、9 | 幸运色：紫色',
+                    warning: '注意合同细节'
+                },
+                { 
+                    period: '2025年7-9月', 
+                    type: '财富增长期', 
+                    events: [
+                        '7月下旬有意外财运，可能来自投资或奖金',
+                        '适合购置不动产，看准时机',
+                        '感情方面有新进展，单身者有望脱单'
+                    ],
+                    lucky: '幸运数字：2、7 | 幸运色：金色',
+                    warning: '防范小人暗算'
+                },
+                { 
+                    period: '2025年10-12月', 
+                    type: '收获巩固期', 
+                    events: [
+                        '年终奖金丰厚，超出预期30%',
+                        '家庭关系和谐，有添丁之喜',
+                        '事业地位稳固，影响力扩大'
+                    ],
+                    lucky: '幸运数字：1、5 | 幸运色：红色',
+                    warning: '注意身体保养'
+                }
+            ];
+            
+            timeline.innerHTML = '';
+            periods.forEach((period, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.style.animationDelay = (index * 0.1) + 's';
+                item.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-period">${period.period} - ${period.type}</div>
+                    <div class="timeline-details">
+                        <div class="timeline-events">
+                            ${period.events.map(e => `<div style="margin-bottom: 8px;">• ${e}</div>`).join('')}
+                        </div>
+                        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <div style="color: #888; font-size: 13px; margin-bottom: 4px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 4px; opacity: 0.6;">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                ${period.lucky}
+                            </div>
+                            <div style="color: #888; font-size: 13px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; margin-right: 4px; opacity: 0.6;">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                                ${period.warning}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                timeline.appendChild(item);
+            });
+            
+            // 添加总体建议
+            const advice = document.createElement('div');
+            advice.className = 'card' 
+            advice.style.marginTop = '20px';
+            advice.style.background = 'rgba(255, 255, 255, 0.02)';
+            advice.style.border = '1px solid rgba(255, 255, 255, 0.05)';
+            advice.innerHTML = `
+                <h3 style="font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                    <span class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </span>
+                    核心建议
+                </h3>
+                <div style="line-height: 1.8; color: #ccc;">
+                    <p style="margin-bottom: 10px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px; opacity: 0.6;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        <strong>事业发展路径：</strong>2025年事业运势呈阶梯式上升，关键转折点在4月15-20日（概率87%）和7月8-13日（概率83%）。建议3月开始准备简历和作品集，4月主动寻求晋升机会。预计职位提升1-2级，年薪增长${25 + careerBonus}-${35 + careerBonus}%，达到${40 + birthMonth}万-${55 + birthMonth}万元。适合发展方向：${birthMonth <= 4 ? '技术管理' : birthMonth <= 8 ? '产品运营' : '商务拓展'}。
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px; opacity: 0.6;">
+                            <line x1="12" y1="2" x2="12" y2="22"/>
+                            <polygon points="17 7 12 2 7 7"/>
+                            <polygon points="17 17 12 22 7 17"/>
+                        </svg>
+                        <strong>财富增长曲线：</strong>全年财富增长分为三个阶段：1-3月储备期（月均结余${2 + Math.floor(birthDay/10)}万）、4-8月爆发期（月均收入${8 + Math.floor(birthMonth/2)}万）、9-12月稳定期（月均收入${10 + Math.floor(birthMonth/2)}万）。投资建议：40%稳健理财（年化4-5%）、30%股票基金（预期收益${18 + wealthBonus}-${25 + wealthBonus}%）、20%应急储备、10%自我提升。7月中旬和10月初是最佳投资时点。
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px; opacity: 0.6;">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <strong>感情发展时间表：</strong>单身者最佳脱单窗口：${birthMonth <= 6 ? '7月10-25日' : '8月5-20日'}（成功率${76 + (birthMonth % 3) * 4}%），建议参加${birthMonth % 2 === 0 ? '行业聚会' : '兴趣社交'}活动。已婚/恋爱者感情升温期在${birthMonth <= 6 ? '5月和9月' : '6月和10月'}，适合共同旅行或重大决定。生育运势：${birthMonth % 4 <= 1 ? '下半年' : '明年上半年'}较佳，成功率提升${23}%。
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 6px; opacity: 0.6;">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <strong>健康管理方案：</strong>整体健康指数${83}/100，需要重点关注：${birthMonth <= 3 ? '呼吸系统（3月、11月高发）' : birthMonth <= 6 ? '消化系统（6月、9月注意）' : birthMonth <= 9 ? '心血管（注意血压）' : '免疫系统（换季敏感）'}。建议体检时间：3月下旬和9月中旬。运动方案：每周${3 + Math.floor(birthDay/10)}次，每次${30 + birthMonth}分钟，推荐${birthMonth % 3 === 0 ? '游泳' : birthMonth % 3 === 1 ? '瑜伽' : '慢跑'}。
+                    </p>
+                </div>
+            `;
+            document.getElementById('results').insertBefore(advice, document.querySelector('#results .submit-btn'));
+        }
+        
+        // 重置表单
+        function resetForm() {
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('inputForm').style.display = 'block';
+            document.getElementById('userForm').reset();
+            document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
+            selectedGender = '';
+            document.getElementById('progressBar').style.width = '0%';
+        }
+    </script>
+</body>
+</html>

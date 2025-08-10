@@ -1,0 +1,9 @@
+{
+  "name": "hpulse-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["frontend"],
+  "scripts": {
+    "format": "npm --workspace frontend run format"
+  }
+}

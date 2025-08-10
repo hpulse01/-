@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 0 0% 10%;
+}
+
+body {
+  color: hsl(var(--foreground));
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schema.h-pulse/timeline.json",
+  "version": "1.1",
+  "events": [
+    {
+      "id": "evt-0",
+      "time": "1995-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.4848416416616846,
+      "advice": "Focus on growth",
+      "confidence": 0.4848416416616846,
+      "error_margin": 0.22759471931661746,
+      "synthetic": false
+    },
+    {
+      "id": "evt-1",
+      "time": "1996-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.5318748405568544,
+      "advice": "Focus on growth",
+      "confidence": 0.5318748405568544,
+      "error_margin": 0.19231367803293925,
+      "synthetic": false
+    },
+    {
+      "id": "evt-2",
+      "time": "1997-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.5641432460136279,
+      "advice": "Focus on growth",
+      "confidence": 0.5641432460136279,
+      "error_margin": 0.2339464217817342,
+      "synthetic": false
+    },
+    {
+      "id": "evt-3",
+      "time": "1998-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.6583750045914101,
+      "advice": "Focus on growth",
+      "confidence": 0.6583750045914101,
+      "error_margin": 0.21980968008672425,
+      "synthetic": false
+    },
+    {
+      "id": "evt-4",
+      "time": "1999-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.6071305387651386,
+      "advice": "Focus on growth",
+      "confidence": 0.6071305387651386,
+      "error_margin": 0.28221434581625404,
+      "synthetic": false
+    },
+    {
+      "id": "evt-5",
+      "time": "2000-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.5774758002654932,
+      "advice": "Focus on growth",
+      "confidence": 0.5774758002654932,
+      "error_margin": 0.19357580437687832,
+      "synthetic": false
+    },
+    {
+      "id": "evt-6",
+      "time": "2001-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.5565387927691201,
+      "advice": "Focus on growth",
+      "confidence": 0.5565387927691201,
+      "error_margin": 0.23547566424202854,
+      "synthetic": false
+    },
+    {
+      "id": "evt-7",
+      "time": "2002-05-01T08:30:00+00:00",
+      "place": "Tokyo",
+      "domain": "life",
+      "impact": 0.6157515974923882,
+      "advice": "Focus on growth",
+      "confidence": 0.6157515974923882,
+      "error_margin": 0.13835009414192317,
+      "synthetic": false
+    }
+  ]
+}

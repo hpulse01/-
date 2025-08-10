@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.swp
+.env
+.venv
+.cache/
+*.log
+*.pdf
+*.json
+runs/
+artifacts/
+reports/
+.eph/
